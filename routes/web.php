@@ -28,3 +28,15 @@ Route::get('/contact-page',function(){
 Route::get('/service-page',function (){
     return view('service');
 })->name('service');
+
+Route::get('/service-page/{service_id}',function ($service_id){
+    return $service_id;
+})->name('service');
+
+//Route::get('/service-page/{service_id}/{service_name}',function ($service_id,$service_name){
+//    return $service_id.$service_name;
+//})->name('service');
+
+Route::get('/service-page/{service_id}/{service_name?}',function ($service_id,$service_name=null){
+    return $service_id.$service_name;
+})->name('service');
