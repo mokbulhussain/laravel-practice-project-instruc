@@ -14,19 +14,24 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('home',['page_name'=>'Home Page','name'=>'Laravel Course']);
 })->name('home');
 
 Route::get('/about-us',function (){
-    return view('about');
+    $page="About Page";
+    $title="About";
+    $count=11;
+    $color="orange";
+    return view('about',compact('page','title','count','color'));
 })->name('about');
 
 Route::get('/contact-page',function(){
-    return view('contact');
+    return view('contact',['page_name'=>'Contact Page','name'=>'Laravel Course']);
 })->name('contact');
 
 Route::get('/service-page',function (){
-    return view('service');
+    $service=['web','mobile','digital','graphisc'];
+    return view('service',['service'=>$service]);
 })->name('service');
 
 
