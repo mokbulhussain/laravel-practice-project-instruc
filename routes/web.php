@@ -14,7 +14,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home',['page_name'=>'Home Page','name'=>'Laravel Course']);
+
+//    return view('home',['page_name'=>'Home Page','name'=>'Laravel Course']);
+    $data=[
+        'name'=>'salam',
+        'age'=>30
+    ];
+
+//    return response($data);
+//return response($data)->header('content-type','application/json')
+//    ->cookie('myidcard','mokbul',3600);
+
+    return redirect('/about-us');
+
 })->name('home');
 
 Route::get('/about-us',function (){
@@ -22,7 +34,19 @@ Route::get('/about-us',function (){
     $title="About";
     $count=11;
     $color="orange";
-    return view('about',compact('page','title','count','color'));
+    $products=[
+        1=>[
+            'name'=>'bag',
+            'color'=>'red',
+            'price'=>40
+        ],
+        2=>[
+            'name'=>'bet',
+            'color'=>'blue',
+            'price'=>50
+        ]
+    ];
+    return view('about',compact('page','title','count','color','products'));
 })->name('about');
 
 Route::get('/contact-page',function(){
@@ -33,6 +57,7 @@ Route::get('/service-page',function (){
     $service=['web','mobile','digital','graphisc'];
     return view('service',['service'=>$service]);
 })->name('service');
+
 
 
 //single routing parameter
@@ -67,3 +92,18 @@ Route::get('/service-page',function (){
 //Route::get('/search/{keyword}',function($keyword){
 //    return $keyword;
 //})->where('keyword','.*');
+
+
+
+//Route Group
+
+Route::prefix('page')->name('manager.')->group(function(){
+    Route::get('/home',function(){
+    })->name('home');
+    Route::get('/about',function(){
+    })->name('about');
+    Route::get('/contact',function(){
+    })->name('contact');
+    Route::get('/service',function(){
+    })->name('service');
+});

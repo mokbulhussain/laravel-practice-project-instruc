@@ -1,5 +1,7 @@
 @extends('master')
 
+@section('title','About-page')
+
 @section('content')
     <h1>{{$page}}</h1>
     <h2>{{$title}}</h2>
@@ -20,6 +22,31 @@
         @break
         @default
         <p>color is not abbaliable</p>
+
+        @foreach($products as $key=>$product)
+            <ul>
+                <li>
+                    {{$key}}
+                    {{$product['name']}}
+                    {{$product['color']}}
+                    {{$product['price']}}
+                </li>
+            </ul>
+        @endforeach
+
+
+        @forelse($products as $key=>$product)
+            <ul>
+                <li>
+                    {{$key}}
+                    {{$product['name']}}
+                    {{$product['color']}}
+                    {{$product['price']}}
+                </li>
+            </ul>
+        @empty
+            <p>not product</p>
+        @endforelse
 
     @endswitch
 @endsection
